@@ -1,23 +1,12 @@
-public class Book {
+public class Book extends LibraryItem implements Borrowable {
 
-    private String id;
-    private String title;
     private String author;
     private boolean isAvailable;
 
-    public Book(String id, String title, String author, boolean isAvailable) {
-        this.id = id;
-        this.title = title;
+    public Book(int id, String title, String author, boolean isAvailable) {
+        super(id, title);
         this.author = author;
         this.isAvailable = isAvailable;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public String getAuthor() {
@@ -26,6 +15,21 @@ public class Book {
 
     public boolean isAvailable() {
         return isAvailable;
+    }
+
+    public String toString(){
+        return  String.format("{\"id\": %d, \"title\": \"%s\", \"author\": \"%s\", \"isAvailable\": %b}", getId(), getTitle(), author, isAvailable);
+    }
+
+    @Override
+    public void borrow(User user) {
+        if (!isAvailable) throw new RuntimeException("Book is unavalable");
+        this.isAvailable = false;
+    }
+
+    @Override
+    public void returnBook() {
+        this.isAvailable = true;
     }
 }
 
