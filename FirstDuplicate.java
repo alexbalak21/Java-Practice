@@ -1,7 +1,7 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class Exercise {
+public class FirstDuplicate {
 
     public static int findFirstDuplicate(int[] numbers) {
         Set<Integer> seenNumbers = new HashSet<>();
